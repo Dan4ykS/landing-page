@@ -1,0 +1,46 @@
+.title
+  margin: 0 auto
+  font-size: 30px
+  text-align: center
+  font-weight: 900
+  margin-bottom: 20px
+  span
+    color: $mainBgColor
+
+.list
+  display: flex
+  flex-direction: column
+  align-content: flex-end
+  &__item
+    text-align: justify
+    position: relative
+    margin-top: 20px
+    &::before
+      content: ''
+      display: block
+      position: absolute
+      left: -25px
+      top: 0
+      transform: translateY(15%)
+      width: 21px
+      height: 20px
+      background: url("../img/galochka.png") center (center / cover) no-repeat
+
+.section
+  padding: 30px 0
+  width: 100%
+
+.myButton
+  @include btn(15px)
+
+.prev, .next, .arr
+  &:hover
+    cursor: pointer
+
+.flexWrap
+  width: 100%
+  margin-top: 20px
+  display: flex
+  justify-content: space-between
+  align-items: center
+  

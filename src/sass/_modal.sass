@@ -1,0 +1,82 @@
+.overlay
+  display: none
+  position: fixed
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+  background-color: #020000c9
+  z-index: 5
+
+.feed-form
+  margin-top: 36px
+  display: flex
+  flex-direction: column
+  max-width: 300px
+  input
+    height: 50px
+    border-radius: 5px
+    background-color: $mainColor
+    margin-bottom: 15px
+    border: 1px $mainBgColor solid
+    border-radius: 15px
+    padding: 0 20px
+    color: $colorText
+    font-size: 14px
+    font-weight: 300
+    user-select: initial
+    &:focus
+      outline: none
+  .myButtonModal
+    margin-top: 15px
+    @include btn(20px)
+
+.modal
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  max-width: 380px
+  background-color: $mainColor
+  padding: 38px 40px 40px 40px
+  border: 3px $mainBgColor solid
+  border-radius: 15px
+  .title_modal
+    margin-bottom: 0
+  &__close
+    position: absolute
+    top: 0
+    right: -40px
+    height: 20px
+    width: 30px
+    color: $mainColor
+    cursor: pointer
+    &::after
+      content: ''
+      display: block
+      margin-top: 5px
+      background-color: $mainBgColor
+      height: 2px
+      transform: rotate(-45deg) translateX(15%)
+    &::before
+      content: ''
+      display: block
+      margin-top: 5px
+      background-color: $mainBgColor
+      height: 2px
+      transform: rotate(45deg) translateX(15%)
+  &__descr
+    color: $colorText
+    font-size: 17px
+    text-align: center
+  &_mini
+    min-height: 140px
+  // .error
+  //     border: 1px solid red
+  //   label.error
+  //     border: none
+  //     text-align: center
+  //     margin-bottom: 15px
+
+#callBtn, #buyPenBtn, #buyPlasticBtn
+  display: none

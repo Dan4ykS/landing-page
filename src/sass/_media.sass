@@ -1,0 +1,184 @@
+@media (max-width: 1200px)
+  .header
+    &__logo
+      max-width: 300px
+  .start
+    &__btnBlock
+      .myButton
+        font-size: 18px
+        &:hover
+          font-size: 18px
+  .buy
+    &__content
+      font-size: 16px !important
+  .title
+      font-size: 28px !important
+
+@media (max-width: 991px)
+  .header
+    width: 100%
+    max-width: none
+    &__logo
+      max-width: 240px
+    &__addr
+      font-size: 15px
+      img
+        width: 38px
+    &__phone
+      img
+        width: 30px
+      a
+        font-size: 20px
+  .start
+    &__btnBlock
+      justify-content: space-around !important
+      .myButton
+        font-size: 22px
+        &:nth-child(1)
+          margin-right: 20px
+        &:hover
+          background-color: rgba(255,255,255,1)
+          border: 2px solid rgba(87,165,255,1)
+          border-radius: 27px
+          color: #57a5ff
+          font-size: 22px
+  .buy
+    .carusel__nav
+      max-width: 220px !important
+      max-height: 200px !important
+    &__content
+      margin-top: 40px
+@media (max-width: 767px)
+  .header
+    width: 100%
+    max-width: 540px
+    display: flex
+    justify-content: space-between
+    &__addr
+      display: none
+    &__phone
+      display: none
+  .navigation
+    li
+      margin-top: 4px
+      font-size: 15px
+  .start
+    &__btnBlock
+      justify-content: space-around !important
+      .myButton
+        font-size: 15px
+        &:hover
+          background-color: rgba(255,255,255,1)
+          border: 2px solid rgba(87,165,255,1)
+          border-radius: 27px
+          color: #57a5ff
+          font-size: 15px
+  .buy
+    &__content
+      margin-top: 40px
+    .carusel__nav
+      max-width: 160px !important
+
+@media (max-width: 575px)
+  .header
+    padding: 0 15px
+    &__logo
+      max-width: 200px
+    .myButton
+      margin-left: 3px
+      font-size: 11px
+      &:hover
+        background-color: rgba(255,255,255,1)
+        border: 2px solid rgba(87,165,255,1)
+        border-radius: 27px
+        color: #57a5ff
+        font-size: 11px
+  .navigation
+    position: relative
+    height: 40px
+    &__openMenu
+      display: block
+      position: absolute
+      right: 5%
+      top: 50%
+      transform: translateY(-50%)
+      width: 30px
+      height: 20px
+      &::before
+        content: ''
+        display: block
+        margin-top: 3px
+        height: 2px
+        width: 100%
+        background-color: $mainColor
+        transition: 0.5s all
+      &::after
+        content: ''
+        display: block
+        margin-top: 5px
+        height: 2px
+        width: 100%
+        background-color: $mainColor
+        transition: 0.5s all
+      &_active
+        &::before
+          transform: rotate(45deg) translateX(17%)
+        &::after
+          transform: rotate(-45deg) translateX(15%)
+    .mobailMenu
+      z-index: 2
+      position: fixed
+      left: -100%
+      top: 0
+      flex-direction: column
+      justify-content: center
+      height: 100vh
+      width: 50vw
+      background-color: #01070ad4
+      transition: 1s all
+      &_active
+        left: 0
+      li
+        margin: 0 0
+        font-size: 20px
+        margin-bottom: 15px
+  .start
+    &__btnBlock
+      justify-content: center !important
+      .myButton
+        font-size: 15px
+        &:nth-child(1)
+          margin-right: 10px
+        &:hover
+          background-color: rgba(255,255,255,1)
+          border: 2px solid rgba(87,165,255,1)
+          border-radius: 27px
+          color: #57a5ff
+          font-size: 15px
+    .list
+      &__item
+        text-align: left
+        left: 10px
+  .buy
+    .carusel__nav
+      max-width: 110px !important
+    .title_white
+      font-size: 20px !important
+    &__price
+      margin-right: 20px !important
+      .item
+        &:nth-child(1)
+          font-size: 25px
+        &:nth-child(2)
+          font-size: 18px
+    .myButtonModal
+      font-size: 15px !important
+      &:hover
+        font-size: 15px !important
+    &__content
+      font-size: 18px
+  .modal
+    width: 100% !important
+    &__close
+      top: 10px !important
+      right: 8px !important

@@ -1,0 +1,17 @@
+@mixin btn($fontSize) 
+  text-transform: uppercase
+  background-color: rgba(255,255,255,1)
+  border: 2px solid rgba(87,165,255,1)
+  border-radius: 27px
+  color: #57a5ff
+  font-size: $fontSize
+  &:hover
+    background-color: rgba(87,165,255,1)
+    border-color: transparent
+    border-style: solid
+    border-width: 2px
+    color: $mainColor
+    font-size: $fontSize
+  &:focus
+    outline: none
+  
