@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
     buyPenBtn = document.getElementById('buyPenBtn'),
     buyPlasticBtn = document.getElementById('buyPlasticBtn');
 
-  window.addEventListener('scrollTo', () => {
+  window.addEventListener('scroll', () => {
     if (pageYOffset >= 70) {
       menu.classList.add('navigation_active');
     } else {
