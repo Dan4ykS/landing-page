@@ -1,3 +1,4 @@
+import axios from 'axios';
 window.addEventListener('DOMContentLoaded', () => {
   const menu = document.querySelector('.navigation'),
     openMenu = document.querySelector('.navigation__openMenu'),
@@ -11,7 +12,9 @@ window.addEventListener('DOMContentLoaded', () => {
     navLink = document.querySelectorAll('.mobailMenu__item a'),
     callBtn = document.getElementById('callBtn'),
     buyPenBtn = document.getElementById('buyPenBtn'),
-    buyPlasticBtn = document.getElementById('buyPlasticBtn');
+    buyPlasticBtn = document.getElementById('buyPlasticBtn'),
+    modalForm = document.querySelector('form'),
+    input = document.querySelectorAll('input');
 
   window.addEventListener('scroll', () => {
     if (pageYOffset >= 70) {
@@ -99,6 +102,19 @@ window.addEventListener('DOMContentLoaded', () => {
         behavior: 'smooth',
         block: 'start',
       });
+    });
+  });
+  modalForm.addEventListener('submit', (elem) => {
+    elem.preventDefault();
+    const values = {};
+    input.forEach((elem) => {
+      values[elem.name] = elem.value;
+    });
+    // console.log(JSON.stringify(values));
+    // console.log(values)
+    axios.post('mailer/smart.php', JSON.stringify(values));
+    input.forEach((elem) => {
+      elem.value = '';
     });
   });
 });
