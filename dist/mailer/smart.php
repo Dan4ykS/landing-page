@@ -18,7 +18,7 @@ $mail->SMTPAuth = true;                               // Enable SMTP authenticat
 $mail->Username = 'dan28012000@gmail.com';                 // Наш логин
 $mail->Password = 'Ut91nk2tdan';                           // Наш пароль от ящика
 $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 465;                                    // TCP port to connect to
+$mail->Port = 587;                                    // TCP port to connect to
  
 $mail->setFrom('dan28012000@gmail.com', 'fyny_pen');   // От кого письмо 
 $mail->addAddress('samylov5@mail.ru');     // Add a recipient
@@ -38,9 +38,11 @@ $mail->Body    = '
 	E-mail: ' . $email . '';
 
 if(!$mail->send()) {
-    return false;
+	echo 'Письмо не может быть отправлено. ';
+  echo 'Ошибка: ' . $mail->ErrorInfo;
+    // return false;
 } else {
+		echo 'Письмо отправлено';
     return true;
 }
-
 ?>

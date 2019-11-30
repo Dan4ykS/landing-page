@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 window.addEventListener('DOMContentLoaded', () => {
   const menu = document.querySelector('.navigation'),
     openMenu = document.querySelector('.navigation__openMenu'),
@@ -14,7 +14,7 @@ window.addEventListener('DOMContentLoaded', () => {
     buyPenBtn = document.getElementById('buyPenBtn'),
     buyPlasticBtn = document.getElementById('buyPlasticBtn'),
     modalForm = document.querySelector('form'),
-    input = document.querySelectorAll('input');
+    inputs = document.querySelectorAll('input');
 
   window.addEventListener('scroll', () => {
     if (pageYOffset >= 70) {
@@ -67,7 +67,7 @@ window.addEventListener('DOMContentLoaded', () => {
     } else if (i === 2) {
       elem.addEventListener('click', (event) => {
         event.preventDefault();
-        scrollTo('#buy');
+        scrollTo('#plastic');
       });
     } else {
       elem.addEventListener('click', () => {
@@ -92,6 +92,8 @@ window.addEventListener('DOMContentLoaded', () => {
     buyPenBtn.style.display = 'none';
     document.body.style.overflow = '';
     document.body.style.marginRight = '0px';
+    clearInput(inputs);
+    inputs.forEach((elem) => removeInputError(elem))
   });
 
   navLink.forEach((elm) => {
@@ -104,17 +106,85 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+  function validate(elem) {
+    const regExpDic = {
+      name: /^[a-zA-Zа-яА-Я]+$/,
+      email: /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/,
+      phone: /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
+    };
+    const regExpName = elem.dataset.required;
+    if (!regExpDic[regExpName]) return true;
+    return regExpDic[regExpName].test(elem.value);
+  }
+  function inputErrorTemplate(msg) {
+    return `
+      <div class = "formControl_err">${msg}</div>
+    `;
+  }
+
+  function showInputError(elem) {
+    const parent = elem.parentElement;
+    const msg = elem.dataset.invalidMessage;
+    const template = inputErrorTemplate(msg);
+    elem.classList.add('isInvalid');
+    parent.insertAdjacentHTML('beforeend', template);
+  }
+
+  function removeInputError(el) {
+    const parent = el.parentElement;
+    const err = parent.querySelector('.formControl_err');
+    if (!err) return;
+    el.classList.remove('isInvalid');
+    parent.removeChild(err);
+  }
+
+  function isValidForm() {
+    const isValidForm = [];
+    inputs.forEach((elem) => {
+      isValidForm.push(validate(elem));
+      if (!validate(elem)) {
+        if (!elem.parentElement.querySelector('.formControl_err')) {
+          showInputError(elem);
+        }
+      }
+    });
+    return isValidForm.every((elem) => elem === true);
+  }
+
+  function clearInput(inputs) {
+    inputs.forEach((elem) => {
+      elem.value = '';
+    });
+  }
+
   modalForm.addEventListener('submit', (elem) => {
     elem.preventDefault();
     const values = {};
-    input.forEach((elem) => {
-      values[elem.name] = elem.value;
-    });
-    // console.log(JSON.stringify(values));
-    // console.log(values)
-    axios.post('mailer/smart.php', JSON.stringify(values));
-    input.forEach((elem) => {
-      elem.value = '';
-    });
+    if (isValidForm()) {
+      console.log('Успех');
+      clearInput(inputs);
+    } else {
+      console.log('Ошибка валидации');
+      clearInput(inputs);
+    }
+    // const isValidForm = isValidForm();
+    // console.log(isValidForm);
+    // console.log(isValidForm());
+    // inputs.forEach((elem) => {
+    //   values[elem.name] = elem.value;
+    // });
+    // // console.log(JSON.stringify(values));
+    // // console.log(values)
+    // axios.post('mailer/smart.php', JSON.stringify(values));
+    // inputs.forEach((elem) => {
+    //   elem.value = '';
+    // });
   });
+
+  inputs.forEach((elem) => {
+    elem.addEventListener('focus', () => {
+      inputs.forEach((elem) => removeInputError(elem))
+    })
+  })
 });

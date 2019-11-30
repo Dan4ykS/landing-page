@@ -13,11 +13,19 @@
   display: flex
   flex-direction: column
   max-width: 300px
+  .formControl
+    &_err
+      font-size: 12px
+      color: red
+      padding: 0 3px
+  .isInvalid
+    border: 1px red solid
   input
     height: 50px
-    border-radius: 5px
+    width: 100%
+    cursor: text
     background-color: $mainColor
-    margin-bottom: 15px
+    // margin-bottom: 15px
     border: 1px $mainBgColor solid
     border-radius: 15px
     padding: 0 20px
@@ -25,10 +33,12 @@
     font-size: 14px
     font-weight: 300
     user-select: initial
+    &:nth-child(n+1)
+      margin-top: 15px
     &:focus
       outline: none
   .myButtonModal
-    margin-top: 15px
+    margin-top: 20px
     @include btn(20px)
 
 .modal
