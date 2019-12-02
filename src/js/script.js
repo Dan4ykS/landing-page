@@ -1,4 +1,3 @@
-// import axios from 'axios';
 window.addEventListener('DOMContentLoaded', () => {
   const menu = document.querySelector('.navigation'),
     openMenu = document.querySelector('.navigation__openMenu'),
@@ -8,7 +7,10 @@ window.addEventListener('DOMContentLoaded', () => {
     caruselNav = document.querySelectorAll('.carusel__nav'),
     btn = document.querySelectorAll('.myButton'),
     overlay = document.querySelector('.overlay'),
+    modalStart = document.getElementById('modalStart'),
+    modalThanks = document.getElementById('modalThanks'),
     modalClose = document.querySelector('.modal__close'),
+    modalCloseThanks = document.querySelector('.modal__close_Thanks'),
     navLink = document.querySelectorAll('.mobailMenu__item a'),
     callBtn = document.getElementById('callBtn'),
     buyPenBtn = document.getElementById('buyPenBtn'),
@@ -23,6 +25,8 @@ window.addEventListener('DOMContentLoaded', () => {
       menu.classList.remove('navigation_active');
     }
   });
+
+  const data = {};
 
   openMenu.addEventListener('click', () => {
     mobilMenu.classList.toggle('mobailMenu_active');
@@ -72,10 +76,15 @@ window.addEventListener('DOMContentLoaded', () => {
     } else {
       elem.addEventListener('click', () => {
         overlay.style.display = 'block';
+        data['type'] = 'обратный звонок';
         if (i === 0) {
           callBtn.style.display = 'block';
         } else if (i === 3) {
           buyPenBtn.style.display = 'block';
+          data['type'] = '3D ручку';
+        } else {
+          buyPlasticBtn.style.display = 'block';
+          data['type'] = 'пластик';
         }
         const scrollWidth = +window.innerWidth - +menu.clientWidth;
         if (scrollWidth > 0) {
@@ -90,20 +99,29 @@ window.addEventListener('DOMContentLoaded', () => {
     overlay.style.display = 'none';
     callBtn.style.display = 'none';
     buyPenBtn.style.display = 'none';
+    buyPlasticBtn.style.display = 'none';
     document.body.style.overflow = '';
     document.body.style.marginRight = '0px';
     clearInput(inputs);
-    inputs.forEach((elem) => removeInputError(elem))
+    inputs.forEach((elem) => removeInputError(elem));
+  });
+
+  modalCloseThanks.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    modalThanks.style.display = 'none';
+    callBtn.style.display = 'none';
+    buyPenBtn.style.display = 'none';
+    buyPlasticBtn.style.display = 'none';
+    document.body.style.overflow = '';
+    document.body.style.marginRight = '0px';
+    modalStart.style.display = 'block';
   });
 
   navLink.forEach((elm) => {
     elm.addEventListener('click', (event) => {
       event.preventDefault();
       const id = elm.getAttribute('href');
-      document.querySelector('' + id).scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
+      scrollTo(id);
     });
   });
 
@@ -160,31 +178,30 @@ window.addEventListener('DOMContentLoaded', () => {
 
   modalForm.addEventListener('submit', (elem) => {
     elem.preventDefault();
-    const values = {};
     if (isValidForm()) {
-      console.log('Успех');
+      inputs.forEach((elem) => {
+        data[elem.name] = elem.value;
+      });
+      fetch('mailer/smart.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify(data),
+      });
       clearInput(inputs);
+      modalStart.style.display = 'none';
+      modalThanks.style.display = 'block';
     } else {
-      console.log('Ошибка валидации');
       clearInput(inputs);
     }
-    // const isValidForm = isValidForm();
-    // console.log(isValidForm);
-    // console.log(isValidForm());
-    // inputs.forEach((elem) => {
-    //   values[elem.name] = elem.value;
-    // });
-    // // console.log(JSON.stringify(values));
-    // // console.log(values)
-    // axios.post('mailer/smart.php', JSON.stringify(values));
-    // inputs.forEach((elem) => {
-    //   elem.value = '';
-    // });
   });
 
   inputs.forEach((elem) => {
     elem.addEventListener('focus', () => {
-      inputs.forEach((elem) => removeInputError(elem))
-    })
-  })
+      inputs.forEach((elem) => removeInputError(elem));
+    });
+  });
+
+  
 });

@@ -1,7 +1,23 @@
 .plastic
-  &__card
-    border: 2px orange solid
-    border-radius: 15px
-    padding: 20px 15px
-    height: 300px
-    box-shadow: 0 0 20px rgba(0,0,0,0.5)
+  img 
+    border-radius: 15px !important
+  .plasticCard__item
+    // color: $mainColor
+    font-size: 15px
+    margin-bottom: 10px
+    &:nth-child(-n+2)
+      margin-top: 20px
+    &:nth-child(2n+1)
+      padding-left: 20px
+      font-weight: 900
+    &:nth-child(2n)
+      padding: 0
+  .mainPrice_plastic
+    font-size: 25px
+    color: $mainBgColor
+  .oldPrice_plastic
+    font-size: 18px
+  .flexWrap_plastic
+    margin-top: 0
+  .price_plastic
+    margin-right: 30px

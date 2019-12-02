@@ -5,6 +5,7 @@ $_POST = json_decode(file_get_contents("php://input"),true);
 $name = $_POST['name'];
 $phone = $_POST['phone'];
 $email = $_POST['email'];
+$typeOrder = $_POST['type'];
 
 require_once('phpmailer/PHPMailerAutoload.php');
 $mail = new PHPMailer;
@@ -18,7 +19,7 @@ $mail->SMTPAuth = true;                               // Enable SMTP authenticat
 $mail->Username = 'dan28012000@gmail.com';                 // Наш логин
 $mail->Password = 'Ut91nk2tdan';                           // Наш пароль от ящика
 $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 587;                                    // TCP port to connect to
+$mail->Port = 465;                                    // TCP port to connect to
  
 $mail->setFrom('dan28012000@gmail.com', 'fyny_pen');   // От кого письмо 
 $mail->addAddress('samylov5@mail.ru');     // Add a recipient
@@ -30,7 +31,7 @@ $mail->addAddress('samylov5@mail.ru');     // Add a recipient
 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 $mail->isHTML(true);                                  // Set email format to HTML
 
-$mail->Subject = 'Новый заказ';
+$mail->Subject = 'Новый заказ на ' . $typeOrder ;
 $mail->Body    = '
 		Пользователь оставил данные <br> 
 	Имя: ' . $name . ' <br>

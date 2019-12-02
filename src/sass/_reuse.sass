@@ -5,7 +5,26 @@
   font-weight: 900
   margin-bottom: 20px
   span
-    color: $mainBgColor
+    background-color: $mainBgColor
+    border-radius: 15px
+    color: $mainColor
+    padding: 5px 15px
+    font-size: 25px
+
+
+.title_color
+  margin-bottom: 0
+
+.title_white
+  color: $mainColor
+  span
+    font-size: 30px
+    color: $mainColor
+    text-decoration: underline
+    padding: 0 5px
+
+.title_blue
+  color: $mainBgColor
 
 .list
   display: flex
@@ -30,6 +49,13 @@
   padding: 30px 0
   width: 100%
 
+.section_orange
+  background-color: $secondColor
+
+.section_blue
+  background-color: $mainBgColor  
+
+
 .myButton
   @include btn(15px)
 
@@ -43,9 +69,58 @@
   display: flex
   justify-content: space-between
   align-items: center
-  
+
+.flexWrap_column
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+.flexWrap_buy
+  justify-content: center
+
+.title_card
+  font-size: 20px !important
+  // color: $mainColor
+
 .card
   width: 100%
-  border: 2px orange solid
+  border: 2px $secondColor solid
   border-radius: 15px
   padding: 20px 15px
+  // background: $secondColor
+
+.price
+  display: flex
+  flex-direction: column
+  .mainPrice
+    text-align: center
+    font-size: 40px
+    font-weight: 900
+    text-decoration: underline
+  .oldPrice
+    color: #000000bd
+    text-decoration: line-through
+    font-size: 30px
+    text-align: center
+
+.content
+  color: $mainColor
+  text-align: justify
+
+.use__item
+  img
+    display: block
+    margin: 0 auto
+    max-height: 150px
+    max-width: 150px
+  .content_use
+    display: block
+    margin: 0 auto
+    text-align: center
+    max-width: 200px
+    font-size: 18px
+    font-weight: 900
+  .content_black
+    color: $colorText
+    max-width: 300px
