@@ -11,12 +11,13 @@ window.addEventListener('DOMContentLoaded', () => {
     modalThanks = document.getElementById('modalThanks'),
     modalClose = document.querySelector('.modal__close'),
     modalCloseThanks = document.querySelector('.modal__close_Thanks'),
-    navLink = document.querySelectorAll('.mobailMenu__item a'),
+    navLink = document.querySelectorAll('.noLink'),
     callBtn = document.getElementById('callBtn'),
     buyPenBtn = document.getElementById('buyPenBtn'),
     buyPlasticBtn = document.getElementById('buyPlasticBtn'),
     modalForm = document.querySelector('form'),
-    inputs = document.querySelectorAll('input');
+    inputs = document.querySelectorAll('input'),
+    data = {};
 
   window.addEventListener('scroll', () => {
     if (pageYOffset >= 70) {
@@ -25,8 +26,6 @@ window.addEventListener('DOMContentLoaded', () => {
       menu.classList.remove('navigation_active');
     }
   });
-
-  const data = {};
 
   openMenu.addEventListener('click', () => {
     mobilMenu.classList.toggle('mobailMenu_active');
@@ -48,6 +47,12 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     caruselItems[number].style.display = 'block';
   }
+
+  caruselNav.forEach((elem, i) => {
+    elem.addEventListener('touchstart', () => {
+      showSlid(i);
+    });
+  });
 
   caruselNav.forEach((elem, i) => {
     elem.addEventListener('mouseenter', () => {
@@ -121,6 +126,7 @@ window.addEventListener('DOMContentLoaded', () => {
     elm.addEventListener('click', (event) => {
       event.preventDefault();
       const id = elm.getAttribute('href');
+      console.log(id)
       scrollTo(id);
     });
   });
@@ -202,6 +208,4 @@ window.addEventListener('DOMContentLoaded', () => {
       inputs.forEach((elem) => removeInputError(elem));
     });
   });
-
-  
 });

@@ -4,7 +4,9 @@ const sass = require('gulp-sass');
 const cleanCSS = require('gulp-clean-css');
 const autoprefixer = require('gulp-autoprefixer');
 const rename = require('gulp-rename');
-const webpack = require('webpack-stream');
+const uglify = require('gulp-uglify-es').default;
+const imagemin = require('gulp-imagemin');
+const htmlmin = require('gulp-htmlmin');
 
 gulp.task('server', () => {
   browserSync({
@@ -18,48 +20,24 @@ gulp.task('server', () => {
 gulp.task('build-html', () => {
   return gulp
     .src('src/*.html')
+    .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest('dist'));
 })
 
 gulp.task('build-js', () => {
   return gulp
     .src('src/js/script.js')
-    .pipe(
-      webpack({
-        mode: 'development',
-        output: {
-          filename: 'script.js',
-        },
-        watch: false,
-        devtool: 'source-map',
-        module: {
-          rules: [
-            {
-              test: /\.m?js$/,
-              exclude: /(node_modules|bower_components)/,
-              use: {
-                loader: 'babel-loader',
-                options: {
-                  presets: [
-                    [
-                      '@babel/preset-env',
-                      {
-                        debug: true,
-                        corejs: 3,
-                        useBuiltIns: 'usage',
-                      },
-                    ],
-                    '@babel/react',
-                  ],
-                  plugins: ['@babel/plugin-proposal-class-properties'],
-                },
-              },
-            },
-          ],
-        },
-      })
-    )
+    .pipe(uglify({
+      toplevel: true
+    }))
+    .pipe(rename({ suffix: '.min', prefix: '' }))
     .pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('images', () => {
+  return gulp.src("src/img/**/*")
+      .pipe(imagemin())
+      .pipe(gulp.dest("dist/img"));
 });
 
 gulp.task('styles', () => {
@@ -75,9 +53,9 @@ gulp.task('styles', () => {
 
 gulp.task('watch', () => {
   gulp.watch('src/sass/**/*.+(scss|sass)', gulp.parallel('styles'));
-  gulp.watch('src/**/*.js', gulp.parallel('build-js'));
+  gulp.watch('src/js/**/*.js', gulp.parallel('build-js'));
   gulp.watch('src/js/**/*.js').on('change', browserSync.reload);
   gulp.watch('src/*.html', gulp.parallel('build-html'))
 });
 
-gulp.task('default', gulp.parallel('watch', 'server', 'styles'));
+gulp.task('default', gulp.parallel('watch', 'server', 'styles','images'));

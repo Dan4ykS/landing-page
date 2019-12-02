@@ -17,7 +17,7 @@
 
 <body>
   <header>
-    <div class="container header">
+    <div id='top' class="container header">
       <a href="#"><img src="img/Logo.png" alt="logo" class="header__logo"></a>
       <div class="header__addr">
         <img src="img/locate.svg" alt="locate">
@@ -33,11 +33,11 @@
       <div class="container">
         <div class="navigation__openMenu"></div>
         <ul class="flexWrap mobailMenu">
-          <li class='mobailMenu__item'><a href="#buy">3D ручка</a></li>
-          <li class='mobailMenu__item'><a href="#plastic">Пластик</a></li>
-          <li class='mobailMenu__item'><a href="#view">Обзор</a></li>
-          <li class='mobailMenu__item'><a href="#">Оплата и доставка</a></li>
-          <li class='mobailMenu__item'><a href="#">Где находимся</a></li>
+          <li class='mobailMenu__item'><a class="noLink" href="#buy">3D ручка</a></li>
+          <li class='mobailMenu__item'><a class="noLink" href="#plastic">Пластик</a></li>
+          <li class='mobailMenu__item'><a class="noLink" href="#view">Обзор</a></li>
+          <li class='mobailMenu__item'><a class="noLink" href="#buyInfo">Оплата и доставка</a></li>
+          <!-- <li class='mobailMenu__item'><a href="#">Где находимся</a></li> -->
         </ul>
       </div>
     </nav>
@@ -71,7 +71,8 @@
     <section class="section view section_orange">
       <div class="container">
         <div class="row">
-          <div class="title title_view title_white">3D ручка - увлекательная детская игрушка <br> с возможностями технологичного 3D
+          <div class="title title_view title_white">3D ручка - увлекательная детская игрушка <br> с возможностями
+            технологичного 3D
             принтера
           </div>
           <div class="col-md-6">
@@ -83,13 +84,29 @@
           <div class="col-md-6">
             <img src="img/Ruchka.png" alt="Ruchka">
           </div>
-          <div id="buy" class="flexWrap">
+          <div class="flexWrap">
             <div class="view__item">Отвлекает детей от компьютеров и планшетов</div>
             <div class="view__item">Развивает пространственное мышление, воображение</div>
             <div class="view__item">Повышает сосредоточенность и развивает моторику рук</div>
             <div class="view__item">Развивает самостоятельность и снимает стресс</div>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="section video">
+      <div class="container">
+        <h3 class="title title_blue">Как рисовать 3D ручкой 3D PEN-2</h3>
+        <div class="row">
+          <div class="col-lg-6">
+            <iframe class='video video__item' src="https://www.youtube.com/embed/vSV81691Z90" frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="col-lg-6">
+            <iframe class="video video__item" src="https://www.youtube.com/embed/MHLq5oRbOVg" frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div id="buy"></div>
       </div>
     </section>
     <section class="section buy section_blue">
@@ -152,7 +169,8 @@
           <div class="col-md-4">
             <div class="use__item">
               <img src="img/step2.svg" alt="step2">
-              <p class="content content_use content_black">Менеджер проконсультирует вас по деталям и оформит доставку</p>
+              <p class="content content_use content_black">Менеджер проконсультирует вас по деталям и оформит доставку
+              </p>
             </div>
           </div>
           <div class="col-md-4">
@@ -169,22 +187,22 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-              <div class="use__item">
-                  <img src="img/useImg1.png" alt="useImg1">
-                  <p class="content content_use">Подключите адаптер к 3D ручке</p>
-                </div>
+            <div class="use__item">
+              <img src="img/useImg1.png" alt="useImg1">
+              <p class="content content_use">Подключите адаптер к 3D ручке</p>
+            </div>
           </div>
           <div class="col-md-4">
-              <div class="use__item">
-                  <img src="img/useImg2.png" alt="useImg2">
-                  <p class="content content_use">Вставьте пластиковую нить в 3D ручку</p>
-                </div>
+            <div class="use__item">
+              <img src="img/useImg2.png" alt="useImg2">
+              <p class="content content_use">Вставьте пластиковую нить в 3D ручку</p>
+            </div>
           </div>
           <div class="col-md-4">
-              <div class="use__item">
-                  <img src="img/useImg3.png" alt="useImg3">
-                  <p id='plastic' class="content content_use">Нажмите на кнопку и рисуйте 3D ручкой</p>
-                </div>
+            <div class="use__item">
+              <img src="img/useImg3.png" alt="useImg3">
+              <p id='plastic' class="content content_use">Нажмите на кнопку и рисуйте 3D ручкой</p>
+            </div>
           </div>
         </div>
       </div>
@@ -284,10 +302,81 @@
           <div class="col-md-3 exemple__item"><img src="img/exemple7.jpg" alt="exemple7"></div>
           <div class="col-md-3 exemple__item"><img src="img/exemple8.jpg" alt="exemple8"></div>
         </div>
+        <div id="buyInfo"></div>
+      </div>
+    </section>
+    <section class="section buyInfo">
+      <h2 class="title title_blue">Оплата и доставка</h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="buyInfo__item">
+                <img src="img/dostavkaIco.png" alt="ikonkaDostavka">
+                <div class="title title_black">По городу Екатеринбургу</div>
+                <div class="list">
+                  <div class="list__item list__item_buyInfo">Бесплатная доставка курьером</div>
+                  <div class="list__item list__item_buyInfo">Оплата при получении и осмотре заказа</div>
+                  <div class="list__item list__item_buyInfo">Доставим в удобное для Вас время</div>
+                </div>
+                <div class="title title_black">По другим городам РФ</div>
+                <div class="list">
+                  <div class="list__item list__item_buyInfo">Отправляем через Почту России</div>
+                  <div class="list__item list__item_buyInfo">Используем наложенный платеж</div>
+                  <div class="list__item list__item_buyInfo">Оплата в ближайшем отделении</div>
+                  <div class="list__item list__item_buyInfo">Стоимость доставки узнавать у менеджера</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card card_buyInfo">
+              <div class="buyInfo__item">
+                <img src="img/oplataIco.png" alt="iconkaOplata">
+                <div class="title title_black">По городу Екатеринбургу</div>
+                <div class="list">
+                    <div class="list__item list__item_buyInfo">Оплата при получении заказа курьеру</div>
+                    <div class="list__item list__item_buyInfo">Перед оплатой можно осмотреть товар</div>
+                    <div class="list__item list__item_buyInfo">Оплата наличными или переводом на карту Сбербанка или СКБ-Банка</div>
+                  </div>
+                  <div class="title title_black">По другим городам РФ</div>
+                  <div class="list">
+                    <div class="list__item list__item_buyInfo">Оплата в ближайшем отделении Почты России</div>
+                    <div class="list__item list__item_buyInfo">Способ отплаты зависит от отделения</div>
+                    <div class="list__item list__item_buyInfo">Перед оплатой можно осомотреть товар</div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
   <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-2">
+          <div class="content content_funypen"> 
+            <a class="noLink" href="#top">funypen</a>
+          </div>
+        </div>
+        <div class="col-md-5 col-9 offset-md-5 offset-1"> 
+          <div class="flexWrap flexWrap_footer">
+            <div class="content content_footer">Подписывайтесь на нас: </div>
+            <div class="footer__item">
+              <a href="https://www.instagram.com/funypen">
+                <img src="img/footerImg1.png" alt="instagram">
+              </a>
+            </div>
+            <div class="footer__item">
+              <a href="https://www.youtube.com/channel/UC5nIuS2bLIFHC378Vfhgh5w">
+                <img src="img/footerImg2.png" alt="youtube">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </footer>
   <div class="overlay fade">
     <div class="modal" id="modalStart">
@@ -319,7 +408,7 @@
         в ближайшее время!</div>
     </div>
   </div>
-  <script src="js/script.js"></script>
+  <script src="js/script.min.js"></script>
 </body>
 
 </html>
